@@ -1,0 +1,16 @@
+runtime: php
+env: flex
+
+beta_settings:
+  cloud_sql_instances: "dark-carport-344412:europe-southwest1:random-database"
+
+runtime_config:
+  document_root: .
+
+automatic_scaling:
+  min_num_instances: 5
+  max_num_instances: 15
+  cool_down_period_sec: 180
+  cpu_utilization:
+    target_utilization: 0.7
+  target_concurrent_requests: 100
