@@ -6,19 +6,23 @@ header('Access-Control-Allow-Method: POST');
 header('Access-Control-Allow-Headers: Origin, Content-Type, Accept');
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $num = rand(0, 100000);
-    $name = 'fuck';
-    add_data($num, $name);
-    echo json_encode(array($name => $num));
+    get_max();
 } else {
     die(header('HTTP/1.1 405 Request Method Not Allowed'));
 }
 
-function add_data($num, $name) {
+function get_max() {
     $conn = open_con();
-    $sql = "INSERT INTO numbers (ename, num)
-    VALUES ('$name', $num)";
-    $conn->query($sql);
+    $sql = "SELECT ename, num FROM numbers WHERE num = (SELECT MAX(num) FROM numbers LIMIT 10000);";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $max_name = $row["ename"];
+        $max_num = $row["num"];
+        $max = array($max_name => $max_num);
+        echo json_encode($max);
+    }
     close_con($conn);
 }
 

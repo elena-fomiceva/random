@@ -9,7 +9,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-menu.css" rel="stylesheet">
 </head>
-
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
 <!-- Welcome   -->
@@ -21,13 +20,32 @@
                 <p>This application generates up to 10,000 random integers between 0 to 100,000.</p>
                 <p>It also determines and displays the largest and the smallest numbers generated.</p>
                 <p>&nbsp;</p>
-                <form method="POST" action="generate.php">
-                    <button class="btn btn-primary page-scroll" type="submit">Click To Generate!</button>
-                </form>
+                <button class="btn btn-primary page-scroll" onclick="loadNum()">Click To Generate!</button>
             </div>
         </div>
     </div>
 </section>
 
+<!-- About -->
+<section id="about" class="about-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Result</h1>
+                    <h3>All Instances</h3>
+                        <div id="instances" class="output"></div>
+                    <h3>All Generated Numbers</h3>
+                        <div id="nums" class="output"></div>
+                    <h3>Largest Number</h3>
+                        <div id="largest" class="output"></div>
+                    <h3>Smallest Number</h3>
+                        <div id="smallest" class="output"></div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<script src="script.js"></script>
 
+</body>
+</html>
