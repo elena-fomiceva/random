@@ -2,7 +2,7 @@
 
 function open_con()
 {
-    $dbhost = "34.175.57.230";
+    $dbhost = "172.17.0.1";
     $dbuser = "elena_user";
     $dbpass = "azazelo";
     $dbname = "random";

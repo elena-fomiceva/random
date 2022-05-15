@@ -1,12 +1,12 @@
 
 async function loadNum() {
     let nums = [];
-    for (let i=0; i < 10000; i++) {
-        const response = await fetch('/generate.php', {method: 'POST'});
-        const data = await response.json();
-        nums = nums.concat(data);
+    for (let i=0; i < 1000; i++) {
+        const response = fetch('/generate.php', {method: 'POST'});
+        //const data = response.json();
+        //nums = nums.concat(data);
     }
-    displayArrayObjects(nums);
+    //displayArrayObjects(nums);
     location.href = "#about";
     let response = await fetch('/evmax.php', {method: 'POST'});
     let data = await response.json();
@@ -24,7 +24,7 @@ function displayArrayObjects(arrayObjects) {
     let inst = [];
     let names = '';
 
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 1000; i++) {
         const myObject = arrayObjects[i];
 
         for (const x in myObject) {
