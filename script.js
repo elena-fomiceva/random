@@ -33,9 +33,19 @@ function displayArrayObjects(arrayObjects) {
         }
     }
 
-    for (let y of Array.from(new Set(inst))) {
-        names += (y + ", ");
+    const map = inst.reduce(function(prev, cur) {
+        prev[cur] = (prev[cur] || 0) + 1;
+        return prev;
+    }, {});
+
+    for (let key in map) {
+        const value = map[key];
+        names += (key + ": " + value + ", ");
     }
+
+    /*for (let y of Array.from(new Set(inst))) {
+        names += (y + ", ");
+    }*/
     document.getElementById("instances").innerHTML = names;
     document.getElementById("nums").innerHTML = text;
 }
