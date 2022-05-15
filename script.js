@@ -2,17 +2,17 @@
 async function loadNum() {
     let nums = [];
     for (let i=0; i < 10000; i++) {
-        const response = await fetch('/random-back/generate.php', {method: 'POST'});
+        const response = await fetch('/generate.php', {method: 'POST'});
         const data = await response.json();
         nums = nums.concat(data);
     }
     displayArrayObjects(nums);
     location.href = "#about";
-    let response = await fetch('/random-back/evmax.php', {method: 'POST'});
+    let response = await fetch('/evmax.php', {method: 'POST'});
     let data = await response.json();
     nums = data;
     displayMaxMin(nums, true);
-    response = await fetch('/random-back/evmin.php', {method: 'POST'});
+    response = await fetch('/evmin.php', {method: 'POST'});
     data = await response.json();
     nums = data;
     displayMaxMin(nums, false);
