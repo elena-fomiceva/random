@@ -2,7 +2,7 @@ runtime: php
 env: flex
 
 beta_settings:
-  cloud_sql_instances: "dark-carport-344412:europe-southwest1:random-database"
+  cloud_sql_instances: "dark-carport-344412:europe-southwest1:random-database=tcp:3306"
 
 runtime_config:
   document_root: .

@@ -13,12 +13,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 function get_max() {
     $conn = open_con();
-    $sql = "SELECT ename, num FROM numbers WHERE num = (SELECT MAX(num) FROM numbers LIMIT 10000);";
+    $sql = "SELECT name, num FROM numbers WHERE num = (SELECT MAX(num) FROM numbers LIMIT 10000);";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $max_name = $row["ename"];
+        $max_name = $row["name"];
         $max_num = $row["num"];
         $max = array($max_name => $max_num);
         echo json_encode($max);

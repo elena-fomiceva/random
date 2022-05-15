@@ -1,7 +1,7 @@
 
 async function loadNum() {
     let nums = [];
-    for (let i=0; i < 100; i++) {
+    for (let i=0; i < 10000; i++) {
         const response = await fetch('/random-back/generate.php', {method: 'POST'});
         const data = await response.json();
         nums = nums.concat(data);
@@ -12,12 +12,10 @@ async function loadNum() {
     let data = await response.json();
     nums = data;
     displayMaxMin(nums, true);
-    console.log(nums);
     response = await fetch('/random-back/evmin.php', {method: 'POST'});
     data = await response.json();
     nums = data;
     displayMaxMin(nums, false);
-    console.log(nums);
     nums = [];
 }
 
@@ -26,7 +24,7 @@ function displayArrayObjects(arrayObjects) {
     let inst = [];
     let names = '';
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 10000; i++) {
         const myObject = arrayObjects[i];
 
         for (const x in myObject) {

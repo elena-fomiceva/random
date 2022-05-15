@@ -14,12 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 function get_min()
 {
     $conn = open_con();
-    $sql = "SELECT ename, num FROM numbers WHERE num = (SELECT MIN(num) FROM numbers LIMIT 10000);";
+    $sql = "SELECT name, num FROM numbers WHERE num = (SELECT MIN(num) FROM numbers LIMIT 10000);";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $min_name = $row["ename"];
+        $min_name = $row["name"];
         $min_num = $row["num"];
         $min = array($min_name => $min_num);
         echo json_encode($min);
