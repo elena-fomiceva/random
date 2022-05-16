@@ -19,7 +19,7 @@ function loadNum() {
     nums = data;
     displayMaxMin(nums, false);
     nums = [];
-    }, 90000);
+    }, 15000);
 }
 
 function displayArrayObjects(arrayObjects) {
@@ -43,7 +43,7 @@ function displayArrayObjects(arrayObjects) {
 
     for (let key in map) {
         const value = map[key];
-        names += (key + ": " + value + ", ");
+        names += (key + ": " + value + "  ");
     }
 
     document.getElementById("instances").innerHTML = names;

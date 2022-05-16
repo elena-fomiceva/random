@@ -2,7 +2,6 @@
     "require": {
       "google/cloud": "~0.21",
       "ext-json": "*",
-      "ext-mysqli": "*",
-      "google/appengine-php-sdk": "*"
+      "ext-mysqli": "*"
     }
 }

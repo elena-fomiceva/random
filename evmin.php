@@ -25,7 +25,7 @@ function get_min()
         echo json_encode($min);
     }
 
-    //$sql = "TRUNCATE TABLE numbers;";
-    //$conn->query($sql);
+    $sql = "TRUNCATE TABLE numbers;";
+    $conn->query($sql);
     close_con($conn);
 }
