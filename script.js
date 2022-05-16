@@ -1,15 +1,17 @@
 
-async function loadNum() {
+function loadNum() {
     let nums = [];
-    for (let i=0; i < 1000; i++) {
-        const response = fetch('/generate.php', {method: 'POST'});
-        //const data = response.json();
-        //nums = nums.concat(data);
+    for (let i=0; i < 10000; i++) {
+        fetch('/generate.php', {method: 'POST'});
     }
-    //displayArrayObjects(nums);
+    setTimeout(async function(){
     location.href = "#about";
-    let response = await fetch('/evmax.php', {method: 'POST'});
+    let response = await fetch('/getnums.php', {method: 'POST'});
     let data = await response.json();
+    nums = nums.concat(data);
+    displayArrayObjects(nums);
+    response = await fetch('/evmax.php', {method: 'POST'});
+    data = await response.json();
     nums = data;
     displayMaxMin(nums, true);
     response = await fetch('/evmin.php', {method: 'POST'});
@@ -17,6 +19,7 @@ async function loadNum() {
     nums = data;
     displayMaxMin(nums, false);
     nums = [];
+    }, 90000);
 }
 
 function displayArrayObjects(arrayObjects) {
@@ -24,13 +27,13 @@ function displayArrayObjects(arrayObjects) {
     let inst = [];
     let names = '';
 
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 10000; i++) {
         const myObject = arrayObjects[i];
 
-        for (const x in myObject) {
-            text += (x + ": " + myObject[x] + ", ");
-            inst.push(x);
-        }
+        try {
+            text += (myObject['name'] + ': ' + myObject['num'] + '  ');
+            inst.push(myObject['name']);
+        } catch (e) {}
     }
 
     const map = inst.reduce(function(prev, cur) {
@@ -43,9 +46,6 @@ function displayArrayObjects(arrayObjects) {
         names += (key + ": " + value + ", ");
     }
 
-    /*for (let y of Array.from(new Set(inst))) {
-        names += (y + ", ");
-    }*/
     document.getElementById("instances").innerHTML = names;
     document.getElementById("nums").innerHTML = text;
 }
