@@ -19,7 +19,7 @@ function loadNum() {
     nums = data;
     displayMaxMin(nums, false);
     nums = [];
-    }, 15000);
+    }, 70000);
 }
 
 function displayArrayObjects(arrayObjects) {
@@ -31,7 +31,7 @@ function displayArrayObjects(arrayObjects) {
         const myObject = arrayObjects[i];
 
         try {
-            text += (myObject['name'] + ': ' + myObject['num'] + '  ');
+            text += ('<strong>' + myObject['name'] + '</strong>: ' + myObject['num'] + '  ');
             inst.push(myObject['name']);
         } catch (e) {}
     }
@@ -43,7 +43,7 @@ function displayArrayObjects(arrayObjects) {
 
     for (let key in map) {
         const value = map[key];
-        names += (key + ": " + value + "  ");
+        names += ('<strong>' + key + "</strong>>: " + value + "  ");
     }
 
     document.getElementById("instances").innerHTML = names;
