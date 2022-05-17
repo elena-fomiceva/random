@@ -1,25 +1,31 @@
 
-function loadNum() {
+async function loadNum() {
+    const loader = document.getElementById('loader');
+    loader.style.display = 'block';
     let nums = [];
-    for (let i=0; i < 10000; i++) {
-        fetch('/generate.php', {method: 'POST'});
+    let promises = [];
+    let current = 0;
+
+    while (current < 10000) {
+        promises.push(fetch('/generate.php', {method: 'POST'}));
+        current++;
     }
-    setTimeout(async function(){
-        let response = await fetch('/getnums.php', {method: 'POST'});
-        let data = await response.json();
-        nums = nums.concat(data);
-        location.href = "#about";
-        displayArrayObjects(nums);
-        response = await fetch('/evmax.php', {method: 'POST'});
-        data = await response.json();
-        nums = data;
-        displayMaxMin(nums, true);
-        response = await fetch('/evmin.php', {method: 'POST'});
-        data = await response.json();
-        nums = data;
-        displayMaxMin(nums, false);
-        nums = [];
-    }, 70000);
+    await Promise.all(promises);
+    let response = await fetch('/getnums.php', {method: 'POST'});
+    let data = await response.json();
+    nums = nums.concat(data);
+    location.href = "#about";
+    loader.style.display = 'none';
+    displayArrayObjects(nums);
+    response = await fetch('/evmax.php', {method: 'POST'});
+    data = await response.json();
+    nums = data;
+    displayMaxMin(nums, true);
+    response = await fetch('/evmin.php', {method: 'POST'});
+    data = await response.json();
+    nums = data;
+    displayMaxMin(nums, false);
+    nums = [];
 }
 
 function displayArrayObjects(arrayObjects) {
@@ -43,7 +49,7 @@ function displayArrayObjects(arrayObjects) {
 
     for (let key in map) {
         const value = map[key];
-        names += ('<strong>' + key + "</strong>>: " + value + "  ");
+        names += ('<strong>' + key + "</strong>: " + value + "  ");
     }
 
     document.getElementById("instances").innerHTML = names;
